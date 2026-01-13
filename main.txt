@@ -1,0 +1,13 @@
+Frontend 			Backend
+    |				  |
+html, css			.net
+    |				  |
+   js				express
+    |				  |
+   DOM	 	→   API   ←	mongo
+    |
+react/angular
+
+what is node js
+what is 
+what is diff bet let const var
