@@ -1,0 +1,14 @@
+1.What is Web Technology? 
+---> Web technology is the web applications ,websites that are we use in our daily life. 
+
+2.Real-time examples of Web Technology 
+---> Real-time examples of Web Technologies are Amazon , flipkart ,Meesho , Ola ,Uber etc. 
+
+3.What is JavaScript? 
+---> JS is the programming language .It is used for the creative interactive web pages.   JavaScript is versatile and can run both on the client-side (in web browsers) and the server-side (using environments like Node.js) .
+
+4.Which file extension is used for JavaScript? 
+-->.js file extension is used for the JavaScript .
+
+5.Why do we use Node.js?
+---> Node.js is to run the js code outside the browser.
