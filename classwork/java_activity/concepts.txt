@@ -5,7 +5,7 @@
 ---> Real-time examples of Web Technologies are Amazon , flipkart ,Meesho , Ola ,Uber etc. 
 
 3.What is JavaScript? 
----> JS is the programming language .It is used for the creative interactive web pages.   JavaScript is versatile and can run both on the client-side (in web browsers) and the server-side (using environments like Node.js) .
+---> JS is the programming language .It is used for the creative interactive web pages.JavaScript is versatile and can run both on the client-side (in web browsers) and the server-side (using environments like Node.js) .
 
 4.Which file extension is used for JavaScript? 
 -->.js file extension is used for the JavaScript .

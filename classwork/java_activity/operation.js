@@ -24,7 +24,7 @@ console.log(a)
 
 
 let str1 = "hello ";
-let str2 = "Atharv ";
+let str2 = "Anish ";
 console.log(str1 + str2 );
 
 
