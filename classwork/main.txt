@@ -4,7 +4,7 @@ html, css			.net
     |				  |
    js				express
     |				  |
-   DOM	 	→   API   ←	mongo
+   DOM	→   API   ← mongo
     |
 react/angular
 
