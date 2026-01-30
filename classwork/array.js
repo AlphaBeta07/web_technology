@@ -1,9 +1,5 @@
-
-console.log("Functions and Arrays Practice Started");
-
-// Simple function (no parameter, no return)
 function greet() {
-    console.log("Hello! Welcome to JavaScript");
+    console.log("Hello jii");
 }
 greet();
 
@@ -94,12 +90,10 @@ console.log("Average Marks:", calculateAverage(marks));
 let passedStudents = marks.filter(mark => mark >= 40);
 console.log("Passed Students:", passedStudents);
 
-// Example 3: Add bonus marks
-let bonusMarks = marks.map(mark => mark + 5);
-console.log("Bonus Marks:", bonusMarks);
+// Example 3: Add increment marks
+let incrementMarks = marks.map(mark => mark + 5);
+console.log("increment Marks:", incrementMarks);
 
 // Functions make code reusable and clean
 // Arrays store multiple values efficiently
 // Array methods are heavily used in real applications
-
-console.log("Functions and Arrays Practice Completed Successfully");
