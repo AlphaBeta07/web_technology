@@ -19,7 +19,18 @@
 // ~ Value changes based on function call
 // ~ Arrow functions do not bind this
 // ~ Used to access object data and methods
+// function show() {
+//     console.log(this);
+// }
+// show();
 
+// let student = {
+//     name: "Aditi",
+//     showName: function () {
+//         console.log(this.name);
+//     }
+// };
+// student.showName();
 //activity 3
 // why we dont use this keyword in arrow fun
 // We do not use the this keyword in arrow functions because they were intentionally designed to not have their own this binding. 

@@ -1,0 +1,121 @@
+  <!-- event is an action that happens in a browser 
+   ex- clicking a button, moving mouse, pressing key, submiting form, loading page
+   js can detect these events and respond to them 
+   
+   types of event - mouse event, keyboard event and browser event
+   
+   mouse event - click, dblClick, mouseover, mouseout, 
+   keyboard event - key down, key up
+   browser event - load, resize, 
+    html should contain structure and js should logic and mixing both is not a good practice
+    type time stamp default prevented target source element current target clientX clientY screenX screenY altKey controlKey shiftKey
+    add event listener is a js method used to attach an event handler to an html element so that specific function run when a particular event run 
+    event goes to inner element to parent and parent to document -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JavaScript Events Demo</title>
+
+        <style>
+            body {
+                background-color: #414141;
+                color: white;
+                font-family: Arial, sans-serif;
+                text-align: center;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            li {
+                margin: 15px;
+            }
+
+            img {
+                width: 200px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            img:hover {
+                transform: scale(1.5);
+            }
+
+            a {
+                color: lightblue;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <h2>Amazing Images (Click to Remove)</h2>
+
+        <ul id="images">
+            <li>
+                <img id="photoshop"
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
+                    alt="Photoshop Logo">
+            </li>
+
+            <li>
+                <img id="japan"
+                    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+                    alt="Mount Fuji">
+            </li>
+
+            <li>
+                <img id="Nature"
+                    src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b"
+                    alt="Nature Image">
+            </li>
+
+            <li>
+                <img id="photoman"
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+                    alt="Photographer">
+            </li>
+
+            <li>
+                <img id="tiger"
+                    src="https://images.unsplash.com/photo-1546182990-dffeafbe841d"
+                    alt="Tiger"
+                    onclick="alert('hii')">
+            </li>
+
+            <li>
+                <a href="https://google.com" id="google">Visit Google</a>
+            </li>
+        </ul>
+    </body>
+    <script>
+        document.getElementById('photoman').onclick
+        = function (){
+            alert('photo mast ahe')
+        }
+        // select element assign function to click event when clicked 
+        // only one event can be assigned, cannot handel multiple listener properly
+        document.getElementById('Nature').addEventListener('Click', function(e){
+          console.log(e);
+        });
+        // event propagation
+        document.getElementById('images').addEventListener('Click', function(){
+          console.log("clicking inside the ul");
+        });
+        document.getElementById('photoshop').addEventListener('Click', (e)=>{
+          console.log("clicking inside the photoshop");
+        });
+
+        document.getElementById('google').addEventListener('Click', function(e){
+            console.log("google clicked");
+            e.preventDefault;
+        })
+    </script>
+</html>
+

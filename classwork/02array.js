@@ -37,3 +37,12 @@ let score2 = 200;
 let score3 = 300;
 console.log(Array.of(score1, score2, score3));// create new arraay from given value no matter how many 
 //converts values
+
+// 1. Array.of() Create array from values
+// Array.of() creates a new array from the arguments you pass.
+//Array.of(element1, element2, element3, ...)
+
+
+// 2. Array.from() → Convert to array
+// Array.from() creates an array from array-like or iterable objects.
+//Array.from(object, mapFunction)
