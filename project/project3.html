@@ -7,6 +7,7 @@
                 text-align: center;
                 font-family: Arial;
                 margin-top: 100px;
+                background-color:black;
             }
             input {
                 padding: 8px;
@@ -23,14 +24,14 @@
     </style>
     </head>
     <body>
-        <h2>Password Generator</h2>
+        <h2 style="color: antiquewhite;">Password Generator</h2>
         <input type="text" id="password" readonly><br><br>
         <button onclick="generatePassword()">Generate Password</button>
         <script>
             function generatePassword() {
                 let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$!";
                 let password = "";
-                for (let i = 0; i < 8; i++) {
+                for (let i = 0; i < 11; i++) {
                     let randomIndex = Math.floor(Math.random() * chars.length);
                     password += chars[randomIndex];
                 }

@@ -18,6 +18,7 @@
     </head>
     <body>
         <h2>Random Background Color Generator</h2>
+        <h3 id="colorCode">#ffffff</h3>
         <button onclick="changeColor()">Change Color</button>
         <script>
             function changeColor(){
@@ -28,6 +29,7 @@
                     color += letters[Math.floor(Math.random() * 16)];
                 }
                 document.body.style.backgroundColor = color;
+                document.getElementById("colorCode").textContent = color;
             }
         </script>
     </body>
