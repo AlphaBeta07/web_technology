@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction Time Tester</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 40px;
+        }
+
+        #gameBox {
+            width: 80%;
+            max-width: 700px;
+            height: 300px;
+            margin: 40px auto;
+            background: #1e293b;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #text {
+            font-size: 28px;
+            padding: 20px;
+        }
+
+        .green {
+            background: #16a34a !important;
+        }
+
+        .red {
+            background: #dc2626 !important;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #6366f1;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background: #4f46e5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Brain Reaction Tester</h1>
+    <p>Click when box turns GREEN</p>
+
+    <div id="gameBox">
+        <div id="text">Click START to play</div>
+    </div>
+
+    <button onclick="startGame()">Start Game</button>
+    <div id="result"></div>
+
+    <script>
+        let startTime;
+        let waiting = false;
+        let ready = false;
+
+        function startGame() {
+            const box = document.getElementById("gameBox");
+            const text = document.getElementById("text");
+            const result = document.getElementById("result");
+
+            box.classList.remove("green", "red");
+            result.innerHTML = "";
+            text.innerHTML = "Wait for GREEN...";
+            ready = false;
+            waiting = true;
+
+            let randomTime = Math.random() * 3000 + 2000;
+
+            setTimeout(() => {
+                box.classList.add("green");
+                text.innerHTML = "CLICK NOW!";
+                startTime = new Date().getTime();
+                ready = true;
+                waiting = false;
+            }, randomTime);
+        }
+
+        document.getElementById("gameBox").addEventListener("click", function () {
+            const box = document.getElementById("gameBox");
+            const text = document.getElementById("text");
+            const result = document.getElementById("result");
+
+            if (waiting) {
+                box.classList.add("red");
+                text.innerHTML = "Too early Try again";
+                waiting = false;
+                return;
+            }
+
+            if (ready) {
+                let endTime = new Date().getTime();
+                let reaction = endTime - startTime;
+
+                text.innerHTML = "Your Reaction Time: " + reaction + " ms";
+                result.innerHTML = "Try again to improve!";
+                box.classList.remove("green");
+                ready = false;
+            }
+        });
+    </script>
+</body>
+</html>

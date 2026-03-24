@@ -1,36 +1,118 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Random Color Generator</title>
-        <style>
-            body {
-                text-align: center;
-                font-family: Arial;
-                margin-top: 100px;
-                transition: 0.5s;
-            }
-            button {
-                padding: 12px 20px;
-                font-size: 18px;
-                border-radius: 10px;
-            }
-        </style>
-    </head>
-    <body>
-        <h2>Random Background Color Generator</h2>
-        <h3 id="colorCode">#ffffff</h3>
-        <button onclick="changeColor()">Change Color</button>
-        <script>
-            function changeColor(){
-                let letters = "0123456789ABCDEF";
-                let color = "#";
 
-                for(let i=0; i<6; i++){
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                document.body.style.backgroundColor = color;
-                document.getElementById("colorCode").textContent = color;
+<head>
+    <title>Personal Expense Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #f1f1f1;
+            margin: 6px 0;
+            padding: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 6px;
+        }
+
+        .delete {
+            background: red;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .total {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Expense Tracker</h2>
+
+        <input type="text" id="name" placeholder="Expense name">
+        <input type="number" id="amount" placeholder="Amount ₹">
+        <button onclick="addExpense()">Add Expense</button>
+
+        <ul id="list"></ul>
+
+        <div class="total">Total: ₹ <span id="total">0</span></div>
+    </div>
+
+    <script>
+        var total = 0;
+        function addExpense() {
+            var name = document.getElementById("name").value;
+            var amount = document.getElementById("amount").value;
+            if (name == "" || amount == "") {
+                alert("Enter name and amount");
+                return;
             }
-        </script>
-    </body>
+            var li = document.createElement("li");
+            li.innerText = name + " - ₹" + amount;
+            document.getElementById("list").appendChild(li);
+            total = total + parseInt(amount);
+            document.getElementById("total").innerText = total;
+            document.getElementById("name").value = "";
+            document.getElementById("amount").value = "";
+        }
+    </script>
+
+</body>
+
 </html>
