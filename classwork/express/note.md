@@ -10,6 +10,7 @@ express for large application
 2. diff dev dependance and dependance
 3. put, patch and post
 
+# vite install
     npm create vite@latest my-react-app -- --template react
 
 
