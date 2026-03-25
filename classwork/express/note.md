@@ -10,7 +10,7 @@ express for large application
 2. diff dev dependance and dependance
 3. put, patch and post
 
-npm create vite@latest my-react-app -- --template react
+    npm create vite@latest my-react-app -- --template react
 
 
 routing in express.js - it refers to determining how an application response to client request tp a specific requiremnts
