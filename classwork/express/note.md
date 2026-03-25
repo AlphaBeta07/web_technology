@@ -5,12 +5,12 @@ features - routing, middleware support, request abd response handeling, template
 node for small application
 express for large application
 
-# activity
+# Activity
 1. diff between package.json and package-lock.json
 2. diff dev dependance and dependance
 3. put, patch and post
 
-# vite install
+# Vite install
     npm create vite@latest my-react-app -- --template react
 
 
