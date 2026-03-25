@@ -2,6 +2,19 @@ const express =  require('express')
 const port = 3000
 const app = express()
 
+
+// function checkRoute (req, res, next){
+//     console.log(req.url);
+//     next();
+// }
+
+// app.use(checkRoute);
+
+app.use((req, res, next) =>{
+    console.log('data resvied',new Date());    
+});
+
+
 app.get('/', (req, res) => {
     res.send('Hello jii')
 })

@@ -5,7 +5,7 @@ node for small application
 express for larde application
 activity 1 - diff between package.json and package-lock.json
 activity 2 - diff dev dependance and dependance
-activity 3 - 
+activity 3 - put, patch and post
 npm create vite@latest my-react-app -- --template react
 
 
