@@ -61,3 +61,13 @@ Component
     - spec.ts
     - ts
 
+# Data-Binding
+- connect UI to code
+2 types 
+- one way databinding
+    - intercolation
+        - show data from ts in html   
+            {{value}}
+    - property
+    - event
+- two way databinding
