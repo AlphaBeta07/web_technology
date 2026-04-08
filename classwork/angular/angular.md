@@ -1,7 +1,7 @@
 # Anugular
-angular is framework.  
-react is library.  
-react was developed by facebook  
+Angular is framework.  
+React is library.  
+React was developed by facebook  
 
 Angular is a type script based content framework developed by google  
 It helps us build a *Single Page application(SPA)*  
@@ -14,7 +14,8 @@ It helps us build a *Single Page application(SPA)*
     2. npm - node package manager
     3. Ansgular CLI - command line interface
 
-CLI - command line interface 
+CLI 
+- command line interface 
     used for create and manage angular apps
 
 # Install and Run
@@ -22,3 +23,29 @@ CLI - command line interface
     create -    ng new angular-project-1
     run -       ng s 
     run -       ng serve
+  
+# Files and thier usage
+package.json
+- list of packages includes dependencies part of production, dev development only for local development
+
+angular.json 
+- project configuration file
+  
+style.css
+- global css style
+
+.gitignore
+- file or folder execute from version control
+
+tsconfig.json
+- typescript configuratio file
+
+index.html
+- main file loads angular
+
+app.config.ts
+- app config file
+
+main.ps
+- entry point of applicaiton
+
