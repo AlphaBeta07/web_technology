@@ -49,3 +49,15 @@ app.config.ts
 main.ps
 - entry point of applicaiton
 
+Component
+- its a UI block or structure 
+- when we create one component 
+- generate component : 
+
+    ng g c component-name 
+- when we create - 4 files are created : 
+    - html
+    - css
+    - spec.ts
+    - ts
+
