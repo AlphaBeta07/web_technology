@@ -17,3 +17,6 @@ express for large application
 routing in express.js - it refers to determining how an application response to client request tp a specific requiremnts
 components of routing - url path, http methods, handlers methods
 
+# Step to create express 
+    npm init -y
+    npm install express

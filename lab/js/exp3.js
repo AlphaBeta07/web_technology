@@ -25,7 +25,7 @@
 // show();
 
 // let student = {
-//     name: "Aditi",
+//     name: "Anish",
 //     showName: function () {
 //         console.log(this.name);
 //     }
