@@ -21,6 +21,7 @@ CLI
 # Install and Run
     install -   npm install -g @angular/cli
     create -    ng new angular-project-1
+    component - ng g c component-name
     run -       ng s 
     run -       ng serve
   
@@ -71,3 +72,11 @@ Component
         - property
         - event
     - two way databinding
+
+- data binding is a binding technic used to connect ui to code
+
+|     DB       |    syntax      |        description       |
+|--------------|----------------|--------------------------|
+|intercolation |   {{value}}    |show data from ts to html |  
+|  property    | [prop]="value" |bind html property to ts variable|  
+|   event      | (click)="()"   |     call function on event  |
