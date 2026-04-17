@@ -8,7 +8,10 @@ let items = [
     "Momos - 110",
     "Coke - 50",
     "Cold Coffee - 70",
-    "Ice Cream - 60"
+    "Ice Cream - 60",
+    "Mineral Water - 20",
+    "Tap Water - 0",
+    "Sparking Water - 30"
 ];
 
 let cart = [];
@@ -74,7 +77,7 @@ function showCart() {
         let li = document.createElement("li");
 
         let infoDiv = document.createElement("div");
-        infoDiv.innerHTML = `<strong>${item.name}</strong> - RS ${item.price}`;
+        infoDiv.innerHTML = `<strong>${item.name}</strong> - ₹ ${item.price}`;
 
         let actionDiv = document.createElement("div");
         actionDiv.className = "qty-controls";
@@ -115,7 +118,7 @@ function sendOrder() {
     if (cart.length === 0) {
         alert("Your cart is empty!");
     } else {
-        let formattedItems = cart.map(item => `${item.name} - RS ${item.price} x ${item.quantity}`);
+        let formattedItems = cart.map(item => `${item.name} - ₹ ${item.price} x ${item.quantity}`);
 
         fetch("/saveCart", {
             method: "POST",

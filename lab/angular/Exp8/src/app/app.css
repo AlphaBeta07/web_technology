@@ -1,0 +1,50 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Navbar */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 1px solid #eee;
+    background: #eec5ba;
+}
+
+/* Logo */
+.logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+}
+
+/* Links */
+.links a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.links a:hover {
+    color: #000;
+}
+
+/* Active link */
+.links a.active {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Container */
+.container {
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+}

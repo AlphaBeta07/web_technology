@@ -14,14 +14,13 @@ async function loadOrders() {
         if (currentOrders.length === 0) {
             grid.innerHTML = '<div class="no-orders">No orders received yet.</div>';
             countEl.innerText = "0";
-            revenueEl.innerText = "RS 0";
+            revenueEl.innerText = "₹ 0";
             return;
         }
 
         let totalRevenue = 0;
         countEl.innerText = currentOrders.length;
 
-        // Display orders in reverse chronological order (newest first)
         currentOrders.slice().reverse().forEach(order => {
             totalRevenue += order.total;
             
@@ -38,14 +37,14 @@ async function loadOrders() {
                 <ul class="order-items">
                     ${itemsHtml}
                 </ul>
-                <div class="order-total">RS ${order.total}</div>
+                <div class="order-total">₹ ${order.total}</div>
                 <button class="bill-btn" onclick="generateBill(${order.id})">Generate Bill</button>
             `;
             
             grid.appendChild(card);
         });
 
-        revenueEl.innerText = "RS " + totalRevenue;
+        revenueEl.innerText = "₹ " + totalRevenue;
 
     } catch (error) {
         console.error("Error loading orders:", error);
@@ -61,13 +60,11 @@ function generateBill(orderId) {
     order.items.forEach(item => {
         billText += `- ${item}\n`;
     });
-    billText += `\nTOTAL: RS ${order.total}\n--- THANK YOU ---`;
+    billText += `\nTOTAL: ₹ ${order.total}\n--- THANK YOU ---`;
 
     alert(billText);
 }
 
-// Auto refresh every 30 seconds
 setInterval(loadOrders, 30000);
 
-// Initial load
 loadOrders();
