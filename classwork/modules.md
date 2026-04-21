@@ -18,15 +18,3 @@ change the structural page of your page - like add, remove
 
 acitivity 1
 - how we can use if else, for loop, switch case in angular write with example
-
-acitivity 2
-- 
-
-acitivity 3
--   
-
-acitivity 4
--   
-
-acitivity 5
--   
