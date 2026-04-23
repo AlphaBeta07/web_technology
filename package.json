@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/AlphaBeta07/web_technology#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.14.2"
   }
 }

@@ -1,0 +1,272 @@
+<!-- AI PROMPT PLAYGROUND -->
+<div class="app-shell">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button id="btn-toggle-sidebar" class="icon-btn" (click)="showSidebar = !showSidebar" title="Toggle sidebar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="brand">
+        <span class="brand-icon">⚗️</span>
+        <div>
+          <h1 class="brand-name">AI Prompt Playground</h1>
+          <p class="brand-sub">For developers</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="topbar-center">
+      <div class="model-selector-wrap">
+        <label class="field-label" for="model-select">Model</label>
+        <select id="model-select" class="model-select" [(ngModel)]="selectedModel">
+          <option *ngFor="let m of models" [value]="m.id">
+            {{ m.badge }} {{ m.label }} ({{ m.provider }})
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="token-usage">
+        <span class="token-count">{{ totalTokensUsed.toLocaleString() }}</span>
+        <span class="token-limit">/ {{ currentModel.maxTokens.toLocaleString() }} tokens</span>
+        <div class="token-bar">
+          <div class="token-bar-fill" [style.width.%]="tokenPercentage"></div>
+        </div>
+      </div>
+      <button id="btn-clear-chat" class="icon-btn danger-btn" (click)="clearChat()" title="Clear chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="body-layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="left-sidebar" [class.collapsed]="!showSidebar">
+
+      <!-- Tabs -->
+      <div class="tab-bar">
+        <button class="tab-btn" [class.active]="activeTab === 'chat'" (click)="activeTab = 'chat'" id="tab-chat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Prompt
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'history'" (click)="activeTab = 'history'" id="tab-history">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.2"/></svg>
+          History <span class="badge" *ngIf="history.length">{{ history.length }}</span>
+        </button>
+        <button class="tab-btn" [class.active]="activeTab === 'settings'" (click)="activeTab = 'settings'" id="tab-settings">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Params
+        </button>
+      </div>
+
+      <!-- PROMPT TAB -->
+      <div class="tab-content" *ngIf="activeTab === 'chat'">
+
+        <!-- System Prompt -->
+        <div class="field-group">
+          <div class="field-header">
+            <label class="field-label" for="system-prompt">System Prompt</label>
+            <span class="token-badge">{{ systemTokens }} tokens</span>
+          </div>
+          <textarea
+            id="system-prompt"
+            class="textarea system-textarea"
+            [(ngModel)]="systemPrompt"
+            rows="6"
+            placeholder="You are a helpful assistant..."></textarea>
+        </div>
+
+        <!-- Templates -->
+        <div class="field-group">
+          <label class="field-label">Quick Templates</label>
+          <div class="template-list">
+            <button
+              *ngFor="let t of templates; let i = index"
+              class="template-btn"
+              [id]="'template-btn-' + i"
+              (click)="applyTemplate(t)"
+              [class.active]="systemPrompt === t.system">
+              {{ t.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Streaming toggle -->
+        <div class="field-group">
+          <label class="field-label">Options</label>
+          <label class="toggle-row">
+            <input type="checkbox" id="streaming-toggle" [(ngModel)]="streaming" class="toggle-input" />
+            <span class="toggle-track">
+              <span class="toggle-thumb"></span>
+            </span>
+            <span class="toggle-label">Streaming response</span>
+          </label>
+        </div>
+
+      </div>
+
+      <!-- HISTORY TAB -->
+      <div class="tab-content" *ngIf="activeTab === 'history'">
+        <div class="history-header">
+          <span class="field-label">{{ history.length }} saved {{ history.length === 1 ? 'run' : 'runs' }}</span>
+          <button id="btn-clear-history" class="text-btn danger" (click)="clearHistory()" *ngIf="history.length">Clear</button>
+        </div>
+        <div class="history-empty" *ngIf="!history.length">
+          <span>📭</span>
+          <p>No history yet. Send a message to get started.</p>
+        </div>
+        <div class="history-list">
+          <div
+            *ngFor="let entry of history; trackBy: trackHistory"
+            class="history-item"
+            (click)="loadHistory(entry)">
+            <div class="history-label">{{ entry.label }}</div>
+            <div class="history-meta">
+              <span class="meta-chip">{{ entry.model }}</span>
+              <span class="meta-chip">t={{ entry.temperature }}</span>
+              <span class="meta-chip">{{ entry.tokens }} tok</span>
+              <span class="meta-date">{{ formatDate(entry.timestamp) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div class="tab-content" *ngIf="activeTab === 'settings'">
+
+        <div class="param-group">
+          <div class="param-header">
+            <label class="field-label" for="temp-range">Temperature</label>
+            <span class="param-value-badge">{{ temperature.toFixed(1) }} <span class="param-hint">{{ temperatureLabel }}</span></span>
+          </div>
+          <input id="temp-range" type="range" min="0" max="2" step="0.1" [(ngModel)]="temperature" class="range-slider" />
+          <div class="range-labels"><span>Precise 0</span><span>2 Wild</span></div>
+        </div>
+
+        <div class="param-group">
+          <div class="param-header">
+            <label class="field-label" for="tokens-range">Max Tokens</label>
+            <span class="param-value-badge">{{ maxTokens }}</span>
+          </div>
+          <input id="tokens-range" type="range" min="64" max="4096" step="64" [(ngModel)]="maxTokens" class="range-slider" />
+          <div class="range-labels"><span>64</span><span>4096</span></div>
+        </div>
+
+        <div class="param-group">
+          <div class="param-header">
+            <label class="field-label" for="topp-range">Top P</label>
+            <span class="param-value-badge">{{ topP.toFixed(2) }}</span>
+          </div>
+          <input id="topp-range" type="range" min="0" max="1" step="0.05" [(ngModel)]="topP" class="range-slider" />
+          <div class="range-labels"><span>0</span><span>1.0</span></div>
+        </div>
+
+        <div class="param-group">
+          <div class="param-header">
+            <label class="field-label" for="freq-range">Frequency Penalty</label>
+            <span class="param-value-badge">{{ frequencyPenalty.toFixed(2) }}</span>
+          </div>
+          <input id="freq-range" type="range" min="-2" max="2" step="0.1" [(ngModel)]="frequencyPenalty" class="range-slider" />
+          <div class="range-labels"><span>-2</span><span>2</span></div>
+        </div>
+
+        <div class="param-group">
+          <div class="param-header">
+            <label class="field-label" for="presence-range">Presence Penalty</label>
+            <span class="param-value-badge">{{ presencePenalty.toFixed(2) }}</span>
+          </div>
+          <input id="presence-range" type="range" min="-2" max="2" step="0.1" [(ngModel)]="presencePenalty" class="range-slider" />
+          <div class="range-labels"><span>-2</span><span>2</span></div>
+        </div>
+
+        <div class="param-summary">
+          <div class="param-row"><span>Model Context</span><strong>{{ currentModel.maxTokens.toLocaleString() }} tokens</strong></div>
+          <div class="param-row"><span>Provider</span><strong>{{ currentModel.provider }}</strong></div>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- CHAT PANEL -->
+    <div class="chat-panel">
+
+      <!-- Messages -->
+      <div class="messages-area" id="messages-area">
+        <div
+          *ngFor="let msg of messages; trackBy: trackMsg"
+          class="message-wrapper"
+          [class]="'msg-' + msg.role">
+
+          <div class="msg-avatar" [class]="'avatar-' + msg.role">
+            <span *ngIf="msg.role === 'user'">U</span>
+            <span *ngIf="msg.role === 'assistant'">AI</span>
+            <span *ngIf="msg.role === 'system'">S</span>
+          </div>
+
+          <div class="msg-body">
+            <div class="msg-meta">
+              <span class="msg-role">{{ msg.role === 'assistant' ? currentModel.label : (msg.role | titlecase) }}</span>
+              <span class="msg-time">{{ formatTime(msg.timestamp) }}</span>
+              <span class="msg-tokens">{{ msg.tokens }} tokens</span>
+              <span class="msg-latency" *ngIf="msg.latencyMs">{{ msg.latencyMs }}ms</span>
+              <button class="copy-btn" (click)="copyToClipboard(msg.content)" title="Copy">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+            <div class="msg-content" [innerHTML]="formatMarkdown(msg.content)"></div>
+          </div>
+        </div>
+
+        <!-- Streaming indicator -->
+        <div class="message-wrapper msg-assistant" *ngIf="isLoading">
+          <div class="msg-avatar avatar-assistant"><span>AI</span></div>
+          <div class="msg-body">
+            <div class="msg-meta">
+              <span class="msg-role">{{ currentModel.label }}</span>
+              <span class="streaming-badge">● streaming</span>
+            </div>
+            <div class="msg-content streaming-content" *ngIf="streamedText" [innerHTML]="formatMarkdown(streamedText)"></div>
+            <div class="typing-dots" *ngIf="!streamedText">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-panel">
+        <div class="input-wrapper">
+          <textarea
+            id="user-message-input"
+            class="chat-input"
+            [(ngModel)]="userMessage"
+            (keydown)="onKeyDown($event)"
+            [disabled]="isLoading"
+            placeholder="Type your message… (Ctrl+Enter to send)"
+            rows="3"></textarea>
+          <div class="input-footer">
+            <span class="input-hint">
+              <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to send
+              &nbsp;·&nbsp;
+              <span [class.warn-tokens]="userMessageTokens > 500">{{ userMessageTokens }} tokens</span>
+            </span>
+            <button
+              id="btn-send"
+              class="send-btn"
+              (click)="sendMessage()"
+              [disabled]="!userMessage.trim() || isLoading">
+              <svg *ngIf="!isLoading" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span *ngIf="isLoading" class="spinner"></span>
+              {{ isLoading ? 'Generating…' : 'Send' }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
