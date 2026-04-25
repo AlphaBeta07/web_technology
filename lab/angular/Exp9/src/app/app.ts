@@ -4,7 +4,7 @@ import { ListStudent } from '../list-student/list-student';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,ListStudent],
+  imports: [ListStudent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
