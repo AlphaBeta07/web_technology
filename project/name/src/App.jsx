@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./App.css";
 import html2canvas from "html2canvas";
+import { FaDownload } from "react-icons/fa";
 
 const letterMap = {
   A: 5,
@@ -40,7 +41,7 @@ const getRandomImage = (char) => {
 const App = () => {
   const [name, setName] = useState("");
   const [images, setImages] = useState([]);
-  const outputRef = useRef(null); // 👈 important
+  const outputRef = useRef(null); 
 
   const generateName = () => {
     const cleanName = name.toUpperCase().replace(/[^A-Z]/g, "");
@@ -52,7 +53,6 @@ const App = () => {
     setImages(result);
   };
 
-  // 🔥 Download function
   const downloadImage = async () => {
     const canvas = await html2canvas(outputRef.current);
     const link = document.createElement("a");
@@ -75,7 +75,6 @@ const App = () => {
         <button onClick={generateName}>Generate</button>
       </div>
 
-      {/* 👇 THIS AREA WILL BE CAPTURED */}
       <div className="output" ref={outputRef}>
         {images.length > 0 ? (
           images.map((img, index) => (
@@ -86,10 +85,10 @@ const App = () => {
         )}
       </div>
 
-      {/* 👇 DOWNLOAD BUTTON */}
       {images.length > 0 && (
         <button className="download-btn" onClick={downloadImage}>
-          Download Image
+          <FaDownload />
+          Download
         </button>
       )}
     </div>
