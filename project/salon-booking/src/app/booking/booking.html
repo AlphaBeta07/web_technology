@@ -1,0 +1,25 @@
+<h2>Salon Appointment Booking</h2>
+
+<form (ngSubmit)="addBooking()">
+  <input type="text" [(ngModel)]="booking.name" name="name" placeholder="Your Name" required>
+
+  <select [(ngModel)]="booking.service" name="service" required>
+    <option value="">Select Service</option>
+    <option>Haircut</option>
+    <option>Facial</option>
+  </select>
+
+  <input type="date" [(ngModel)]="booking.date" name="date" required>
+  <input type="time" [(ngModel)]="booking.time" name="time" required>
+
+  <button type="submit">Book Appointment</button>
+</form>
+
+<hr>
+
+<h3>Appointments</h3>
+<ul>
+  <li *ngFor="let b of bookings">
+    {{b.name}} - {{b.service}} on {{b.date}} at {{b.time}}
+  </li>
+</ul>

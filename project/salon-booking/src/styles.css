@@ -1,0 +1,67 @@
+/* Center layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form container */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 10px;
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #ff4c4c;
+}
+
+/* Appointment list */
+h3 {
+  text-align: center;
+}
+
+ul {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  background: white;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
