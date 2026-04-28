@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Chat</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #000000;
+        }
+
+        .chat-box {
+            background: #a9adb4;
+            padding: 20px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 6px;
+            color: black;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        li {
+            background: #334155;
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>WebSocket Chat</h2>
+
+<div class="chat-box">
+    <input type="text" id="message" placeholder="Enter message">
+    <button onclick="sendMessage()">Send</button>
+
+    <ul id="messages"></ul>
+</div>
+
+<script>
+    const ws = new WebSocket("ws://localhost:3000");
+
+    ws.onopen = () => {
+        console.log("Connected to server");
+    };
+
+    ws.onmessage = (event) => {
+        const li = document.createElement("li");
+        li.textContent = event.data;
+        document.getElementById("messages").appendChild(li);
+    };
+
+    function sendMessage() {
+        const input = document.getElementById("message");
+        ws.send(input.value);
+        input.value = "";
+    }
+</script>
+
+</body>
+</html>
