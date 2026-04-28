@@ -1,1 +1,15 @@
-<app-booking></app-booking>
+<div class="app-container">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <span class="logo">Salon</span>
+    </div>
+    <div class="nav-links">
+      <a routerLink="/customer" routerLinkActive="active-link" class="nav-btn">Customer Portal</a>
+      <a routerLink="/salon" routerLinkActive="active-link" class="nav-btn">Salon Dashboard</a>
+    </div>
+  </nav>
+
+  <main class="content-wrapper">
+    <router-outlet></router-outlet>
+  </main>
+</div>

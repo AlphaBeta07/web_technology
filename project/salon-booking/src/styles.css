@@ -1,67 +1,117 @@
-/* Center layout */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --primary-color: #000000;
+  --primary-hover: #333333;
+  --bg-color: #f9fafb;
+  --surface-color: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
+  --transition: all 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
-/* Form container */
-form {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+p {
+  color: var(--text-secondary);
+  line-height: 1.5;
 }
 
-/* Inputs */
-input, select {
+/* Minimal Form Elements */
+.card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+input, select, textarea {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 0.75rem 1rem;
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
 }
 
-/* Button */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+
 button {
-  width: 100%;
-  padding: 10px;
-  background: #ff6b6b;
-  color: white;
-  border: none;
-  border-radius: 6px;
+  background: var(--primary-color);
+  color: #ffffff;
+  border: 1px solid var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  font-size: 16px;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 button:hover {
-  background: #ff4c4c;
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
-/* Appointment list */
-h3 {
-  text-align: center;
+button:disabled {
+  background: var(--text-secondary);
+  border-color: var(--text-secondary);
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
-ul {
-  max-width: 400px;
-  margin: 10px auto;
-  padding: 0;
-  list-style: none;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-li {
-  background: white;
-  margin: 8px 0;
-  padding: 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
 }

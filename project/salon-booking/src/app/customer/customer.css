@@ -1,0 +1,50 @@
+.customer-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.header-section {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.header-section h1 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.header-section p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+
+.booking-card {
+  max-width: 100%;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.submit-btn {
+  margin-top: 1rem;
+}
+
+.submit-btn svg {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
