@@ -1,0 +1,27 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.workflow {
+    background: #eef;
+    padding: 15px;
+    border-left: 5px solid #0056b3;
+    margin-top: 20px;
+}

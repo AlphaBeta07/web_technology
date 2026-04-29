@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Activities</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .section { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+        .image-container img { width: 100px; height: 100px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Activities</h1>
+    
+    <div class="section" id="dom-activity">
+        <h2>DOM Activity (jQuery)</h2>
+        <p>Click on an image to remove it. Refresh to see them again.</p>
+        <div class="image-container">
+            <img src="https://placehold.co/100x100/FF0000/FFFFFF?text=Red" alt="Red">
+            <img src="https://placehold.co/100x100/00FF00/FFFFFF?text=Green" alt="Green">
+            <img src="https://placehold.co/100x100/0000FF/FFFFFF?text=Blue" alt="Blue">
+        </div>
+    </div>
+
+    <div class="section" id="fetch-activity">
+        <h2>Fetch Activity</h2>
+        <ul id="user-list"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

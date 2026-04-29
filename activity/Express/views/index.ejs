@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- Linking static file served by express.static -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= message %></h1>
+        <p>This page is rendered using the <strong>EJS Template Engine</strong>.</p>
+        <p>The styling is coming from a <strong>Static File</strong> (<code>public/style.css</code>).</p>
+        
+        <div class="workflow">
+            <h2>Complete Express Workflow</h2>
+            <ol>
+                <li><strong>Client Request:</strong> Browser requested <code>/</code></li>
+                <li><strong>Middleware:</strong> Processed by <code>express.static</code> and custom <code>loggerMiddleware</code></li>
+                <li><strong>Route Handler:</strong> Express matched <code>app.get('/')</code></li>
+                <li><strong>Response:</strong> <code>res.render()</code> generated this HTML page</li>
+            </ol>
+        </div>
+
+        <h2>Explore Features:</h2>
+        <ul>
+            <li><a href="/users">Express Router & HTTP Methods (GET /users)</a></li>
+            <li><a href="/search?q=express&sort=asc&page=1">Query Parameters Example</a></li>
+        </ul>
+    </div>
+</body>
+</html>
