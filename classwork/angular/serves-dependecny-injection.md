@@ -3,4 +3,4 @@
 - instead of write same code in many component we can write it in one service
 
 command
--       ng generate s student-service
+-       ng g s student-service

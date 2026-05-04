@@ -10,7 +10,7 @@ there are 2 types
     - msdvn  
     
 change the structural page of your page - like add, remove
-- ng for, ng is, ng switch
+- ng for, ng if, ng switch
 
 # Routing
 - navigation between one page to another is routing
